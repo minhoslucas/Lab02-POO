@@ -27,5 +27,22 @@ public class ImobiliariaDeEventos {
     public void adicionarLocal(Local local) {
         this.locais.add(local);
     }
+    /**
+     * Retorna a lista de locais disponíveis
+     * @return a lista de locais disponíveis
+     */
+
+    public String getNome() {
+        return this.nome;
+    }
+    
+    /**
+     * Altera o nome da imobiliária de eventos para `nome` 
+     * @param nome o novo nome da imobiliária de eventos
+     */
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
 }

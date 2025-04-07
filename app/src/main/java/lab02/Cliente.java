@@ -3,12 +3,14 @@
  */
 package lab02;
 
-
+import java.util.ArrayList;
 
 public class Cliente {
 
     private String nome;
     private String email;
+    private ArrayList<Ingresso> ingressos;
+    
 
     /**
      * Construtor da classe cliente
@@ -18,6 +20,7 @@ public class Cliente {
     public Cliente(String nome, String email){
         this.nome = nome;
         this.email = email;
+        this.ingressos = new ArrayList<Ingresso>();
     }
 
     /**
@@ -51,5 +54,29 @@ public class Cliente {
     public void setEmail(String email){
         this.email = email;
     }
+    /**
+     * Retorna a lista de ingressos do cliente
+     * @return a lista de ingressos do cliente
+     */
 
+    public ArrayList<Ingresso> getIngressos() {
+        return ingressos;
+    }
+    /**
+     * Altera a lista de ingressos do cliente para `ingressos` 
+     * @param ingressos a nova lista de ingressos do cliente
+     */
+
+    public void setIngressos(ArrayList<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
+
+    /**
+     * Adiciona um ingresso à lista de ingressos do cliente.
+     * 
+     * @param ingresso o ingresso a ser adicionado
+     */
+    public void adicionarIngresso(Ingresso ingresso) {
+        this.ingressos.add(ingresso);
+    }
 }
