@@ -62,14 +62,6 @@ public class Cliente {
     public ArrayList<Ingresso> getIngressos() {
         return ingressos;
     }
-    /**
-     * Altera a lista de ingressos do cliente para `ingressos` 
-     * @param ingressos a nova lista de ingressos do cliente
-     */
-
-    public void setIngressos(ArrayList<Ingresso> ingressos) {
-        this.ingressos = ingressos;
-    }
 
     /**
      * Adiciona um ingresso à lista de ingressos do cliente.
@@ -78,5 +70,13 @@ public class Cliente {
      */
     public void adicionarIngresso(Ingresso ingresso) {
         this.ingressos.add(ingresso);
+    }
+
+    public void adicionarIngresso(ArrayList<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
+
+    public void removerIngresso(Ingresso ingresso) {
+        this.ingressos.remove(ingresso);
     }
 }
