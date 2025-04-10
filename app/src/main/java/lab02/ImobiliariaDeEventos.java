@@ -4,11 +4,11 @@
 
 package lab02;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ImobiliariaDeEventos {
     
-    private List<Local> locais;
+    private ArrayList<Local> locais;
     private String nome;
 
 
@@ -18,6 +18,7 @@ public class ImobiliariaDeEventos {
      */
     public ImobiliariaDeEventos(String nome) {
         this.nome = nome;
+        this.locais = new ArrayList<Local>();
     }
 
     /**
@@ -44,5 +45,18 @@ public class ImobiliariaDeEventos {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    public Local buscaLocal(String nome) {
+        Local local = null;
+        for (Local test : this.locais) {
+            if (test.getNome().equals(nome)) {
+                local = test;
+            }
+            if (local == null) {
+                // throw new LocalNaoEncontradoException("Local não encontrado");
+            }
+            //NAO SEI FAZER ISSO NGM ME EXPLICOU COMO FAZ ISSO VOU ME MATAR
+        }
+        return local;
+    }
 }

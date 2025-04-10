@@ -46,6 +46,7 @@ public class EventoFestival extends Evento {
      * Retorna uma string contendo a descri o do Festival, com seu nome, lineup, local e dura o
      * @return uma string com a descri o do Festival
      */
+    @Override
     public String descricao() {
         return "Festival: " + this.nome + " - Lineup: " + this.lineup + " - Local: " + this.local + " - Duração: " + this.duracao;
     }

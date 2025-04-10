@@ -40,4 +40,12 @@ public class Ingresso {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
+    
+    /**
+     * Retorna o evento associado ao Ingresso
+     * @return o evento associado ao Ingresso
+     */
+    public Evento getEvento() {
+        return this.evento;
+    }
 }

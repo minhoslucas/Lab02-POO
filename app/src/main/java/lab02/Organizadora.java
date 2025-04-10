@@ -34,9 +34,39 @@ public class Organizadora {
         return novo_evento;
     }
 
+    public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, int duration) {
+        EventoMusicaAoVivo novo_evento = new EventoMusicaAoVivo(nome, local, precoIngresso, organizadora, data, duration);
+        return novo_evento;
+    }
+
     public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista) {
         EventoShow novo_evento = new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
         return novo_evento;
     }
- 
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getCnpj() {
+        return cnpj;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public ArrayList<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void adicionaEvento(ArrayList<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public void adicionaEvento(Evento evento) {
+        this.eventos.add(evento);
+    }
+
+    
 }
