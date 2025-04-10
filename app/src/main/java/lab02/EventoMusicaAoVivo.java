@@ -1,7 +1,6 @@
 package lab02;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EventoMusicaAoVivo extends Evento {
 
