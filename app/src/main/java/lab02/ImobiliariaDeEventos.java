@@ -46,17 +46,29 @@ public class ImobiliariaDeEventos {
         this.nome = nome;
     }
 
-    public Local buscaLocal(String nome) {
-        Local local = null;
+    public ArrayList<Local> buscaLocal(String nome) throws LocalNaoEncontradoException{
+        ArrayList<Local> locais = new ArrayList<Local>();
         for (Local test : this.locais) {
             if (test.getNome().equals(nome)) {
-                local = test;
+                locais.add(test);
             }
-            if (local == null) {
-                // throw new LocalNaoEncontradoException("Local não encontrado");
-            }
-            //NAO SEI FAZER ISSO NGM ME EXPLICOU COMO FAZ ISSO VOU ME MATAR
         }
-        return local;
+        if (locais.size() == 0) {
+            throw new LocalNaoEncontradoException("Local não encontrado");
+        }
+        return locais;
+    }
+
+    public ArrayList<Local> buscaLocal(int capacidade_max) throws LocalNaoEncontradoException {
+        ArrayList<Local> locais = new ArrayList<Local>();
+        for (Local test : this.locais) {
+            if (test.getCapacidade() <= capacidade_max){
+                locais.add(test);
+            }
+        }
+        if (locais.size() == 0) {
+            throw new LocalNaoEncontradoException("Local não encontrado");
+        }
+        return locais;
     }
 }

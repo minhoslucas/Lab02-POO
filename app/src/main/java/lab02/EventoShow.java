@@ -28,14 +28,6 @@ public class EventoShow extends Evento {
     * @return a descrição do Evento
     */
     public String getDescricao() {
-        return "Show: " + this.nome + " - Artista: " + this.artista  + " - Local: " + this.local + " - Data: " + this.data;
-    }
-    
-    /**
-    * Retorna o preço do Ingresso do Evento
-    * @return o preço do Ingresso do Evento
-    */
-    public double getPrecoIngresso() {
-        return this.precoIngresso;
+        return "Show: " + this.getNome() + " - Artista: " + this.artista  + " - Local: " + this.getLocal().getNome() + " - Data: " + this.getData();
     }
 }

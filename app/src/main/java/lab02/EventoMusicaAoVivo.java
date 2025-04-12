@@ -27,7 +27,7 @@ public class EventoMusicaAoVivo extends Evento {
 
     @Override
     public String descricao() {
-        return "Local: " + this.local + "\n"
+        return "Local: " + this.getLocal().getNome() + "\n"
         + "setlist: " + this.setlist + "\n"
         + "Duração: " + this.duration;
     }

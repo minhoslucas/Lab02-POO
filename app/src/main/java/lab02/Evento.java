@@ -4,13 +4,15 @@
 
 package lab02;
 
+import java.util.ArrayList;
 
 public abstract class Evento {
-    protected String nome;
-    protected Local local;
-    protected double precoIngresso; // preço base do ingresso
-    protected Organizadora organizadora;
-    protected String data;
+    private String nome;
+    private Local local;
+    private double precoIngresso; // preço base do ingresso
+    private Organizadora organizadora;
+    private String data;
+    private ArrayList<Ingresso> listaIngressos;
 
     /**
      * Construtor da classe Evento
@@ -23,9 +25,12 @@ public abstract class Evento {
         this.precoIngresso = precoIngresso; // modificar para representar o preço base do ingresso
         this.organizadora = organizadora;
         this.data = data;
+        this.listaIngressos = new ArrayList<Ingresso>();
 
     }
-
+    private boolean isFull(){
+        return this.listaIngressos.size() + 1 > this.local.getCapacidade();
+    }
     /**
      * Retorna o nome do Evento
      * @return o nome do Evento
@@ -72,6 +77,19 @@ public abstract class Evento {
      */
     public void setPrecoIngresso(double precoIngresso){
         this.precoIngresso = precoIngresso;
+    }
+
+    public void venderIngresso(Cliente cliente, Ingresso ingresso) {
+        try {
+            if (isFull()) {
+                throw new IngressoEsgotadoException("EVENTO ESGOTADO");
+            }
+
+            this.listaIngressos.add(ingresso);
+            cliente.adicionarIngresso(ingresso);
+        } catch(IngressoEsgotadoException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String descricao(){

@@ -48,15 +48,6 @@ public class EventoFestival extends Evento {
      */
     @Override
     public String descricao() {
-        return "Festival: " + this.nome + " - Lineup: " + this.lineup + " - Local: " + this.local + " - Duração: " + this.duracao;
-    }
-
-    /**
-    * Retorna o preço do Ingresso do Evento
-    * @return o preço do Ingresso do Evento
-    */
-    @Override
-    public double getPrecoIngresso() {
-        return this.precoIngresso;
+        return "Festival: " + this.getNome() + " - Lineup: " + this.lineup + " - Local: " + this.getLocal().getNome() + " - Duração: " + this.duracao;
     }
 }

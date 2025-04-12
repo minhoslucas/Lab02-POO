@@ -35,15 +35,6 @@ public class EventoJogo extends Evento {
      */
     @Override
     public String descricao() {
-        return "Esporte: " + this.nome + " - Times: " + this.times + " - Local: " + this.local;
-    }
-    
-    /**
-    * Retorna o preço do Ingresso do Evento
-    * @return o preço do Ingresso do Evento
-    */
-    @Override
-    public double getPrecoIngresso() {
-        return this.precoIngresso;
+        return "Esporte: " + this.getNome() + " - Times: " + this.times + " - Local: " + this.getLocal().getNome();
     }
 }
