@@ -6,12 +6,16 @@ package lab02;
 
 import java.util.ArrayList;
 
+import lab02.exceptions.LocalNaoEncontradoException;
+import java.time.LocalDate;
+
 public abstract class Evento {
     private String nome;
     private Local local;
+    private int capacidade;
     private double precoIngresso; // preço base do ingresso
     private Organizadora organizadora;
-    private String data;
+    private LocalDate data;
     private ArrayList<Ingresso> listaIngressos;
 
     /**
@@ -19,9 +23,10 @@ public abstract class Evento {
      * @param nome o nome do Evento
      * @param local o local associado ao Evento
      */
-    public Evento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data) {
+    public Evento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data) {
         this.nome = nome;
         this.local = local;
+        this.capacidade = capacidade;
         this.precoIngresso = precoIngresso; // modificar para representar o preço base do ingresso
         this.organizadora = organizadora;
         this.data = data;
@@ -63,6 +68,13 @@ public abstract class Evento {
         this.local = local;
     }
 
+    public int getCapacidade() {
+        return capacidade;
+    }
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
     /**
      * Retorna o preço do ingresso do Evento
      * @return o precoIngresso do Evento
@@ -79,30 +91,27 @@ public abstract class Evento {
         this.precoIngresso = precoIngresso;
     }
 
-    public void venderIngresso(Cliente cliente, Ingresso ingresso) {
-        try {
-            if (isFull()) {
-                throw new IngressoEsgotadoException("EVENTO ESGOTADO");
-            }
-
-            this.listaIngressos.add(ingresso);
-            cliente.adicionarIngresso(ingresso);
-        } catch(IngressoEsgotadoException e) {
-            System.out.println(e.getMessage());
+    public void venderIngresso(Cliente cliente, Ingresso ingresso) throws LocalNaoEncontradoException {
+        if (ingresso.getEvento().isFull()) {
+            throw new LocalNaoEncontradoException("EVENTO LOTADO");
         }
-    }
-
-    public String descricao(){
-        return "Evento: " + this.nome + " - Local: " + this.local;
+        cliente.adicionarIngresso(ingresso);
+        System.out.println("Ingresso Vendido com Sucesso!");
     }
 
     /**
      * Retorna a data do Evento
      * @return a data do Evento
      */
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
+    public Organizadora getOrganizadora(){
+        return this.organizadora;
+    }
 
+    public String descricao(){
+        return "Evento: " + this.nome + " - Local: " + this.local;
+    }
 }

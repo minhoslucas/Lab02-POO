@@ -6,6 +6,8 @@ package lab02;
 
 import java.util.ArrayList;
 
+import lab02.exceptions.LocalNaoEncontradoException;
+
 public class ImobiliariaDeEventos {
     
     private ArrayList<Local> locais;
@@ -71,4 +73,5 @@ public class ImobiliariaDeEventos {
         }
         return locais;
     }
+
 }

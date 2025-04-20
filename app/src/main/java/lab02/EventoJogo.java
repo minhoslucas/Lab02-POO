@@ -5,6 +5,7 @@
 
 package lab02;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EventoJogo extends Evento {
@@ -16,8 +17,8 @@ public class EventoJogo extends Evento {
     * @param local o local do Evento
     * @param precoIngresso o preço do Ingresso do Evento
     */
-    public EventoJogo(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> times) {
-        super(nome, local, precoIngresso, organizadora, data);
+    public EventoJogo(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, List<String> times) {
+        super(nome, local, capacidade, precoIngresso, organizadora, data);
         this.times = times;
     }
 
