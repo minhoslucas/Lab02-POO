@@ -1,0 +1,31 @@
+package lab02.filter;
+
+import java.util.ArrayList;
+import lab02.Evento;
+import lab02.Local;
+import lab02.exceptions.EventoNaoEncontradoException;
+
+class EventoPorLocalFilter implements Filtro<Local>{
+    private ArrayList<Evento> event_list;
+    private ArrayList<Evento> result;
+
+    EventoPorLocalFilter(ArrayList<Evento> event_list){
+        this.result = new ArrayList<Evento>();
+        this.event_list = event_list;
+    }
+
+    public ArrayList<Evento> getResult(){
+        return this.result;
+    }
+
+    public void filter(Local local) throws EventoNaoEncontradoException{
+        for (Evento event : event_list){
+            if (event.getLocal().equals(local)){
+                result.add(event);
+            }
+        }
+        if (event_list.size() == 0){
+            throw new EventoNaoEncontradoException("Evento Não Encontrado");
+        }
+    }
+}
