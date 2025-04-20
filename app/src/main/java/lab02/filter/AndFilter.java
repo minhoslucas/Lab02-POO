@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import lab02.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-class AndFilter{
+public class AndFilter{
     private ArrayList<Evento> result;
     private ArrayList<Evento> event_list;
 
@@ -16,6 +16,11 @@ class AndFilter{
     public ArrayList<Evento> getResult(){
         return this.result;
     }
+
+    public void setEventList(ArrayList<Evento> event_list){
+        this.event_list = event_list;
+    }
+
     public void filter(Evento evento, boolean data, boolean local, boolean nome, boolean org, boolean tipo) throws EventoNaoEncontradoException{
         ArrayList<Evento> current = this.event_list;
 

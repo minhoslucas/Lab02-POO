@@ -5,19 +5,15 @@ import lab02.Evento;
 import lab02.Local;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-class EventoPorLocalFilter implements Filtro<Local>{
+public class EventoPorLocalFilter extends Filtro<Local>{
     private ArrayList<Evento> event_list;
     private ArrayList<Evento> result;
 
     EventoPorLocalFilter(ArrayList<Evento> event_list){
-        this.result = new ArrayList<Evento>();
-        this.event_list = event_list;
+        super(event_list);
     }
 
-    public ArrayList<Evento> getResult(){
-        return this.result;
-    }
-
+    @Override
     public void filter(Local local) throws EventoNaoEncontradoException{
         for (Evento event : this.event_list){
             if (event.getLocal().equals(local)){
