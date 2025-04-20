@@ -19,7 +19,7 @@ class EventoPorLocalFilter implements Filtro<Local>{
     }
 
     public void filter(Local local) throws EventoNaoEncontradoException{
-        for (Evento event : event_list){
+        for (Evento event : this.event_list){
             if (event.getLocal().equals(local)){
                 result.add(event);
             }

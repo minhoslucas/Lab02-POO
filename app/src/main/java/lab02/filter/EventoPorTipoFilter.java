@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import lab02.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-class EventoPorNomeFilter implements Filtro<Class<?>>{
+class EventoPorTipoFilter implements Filtro<Class<?>>{
     private ArrayList<Evento> event_list;
     private ArrayList<Evento> result;
 
-    EventoPorNomeFilter(ArrayList<Evento> event_list){
+    EventoPorTipoFilter(ArrayList<Evento> event_list){
         this.result = new ArrayList<Evento>();
         this.event_list = event_list;
     }
@@ -18,7 +18,7 @@ class EventoPorNomeFilter implements Filtro<Class<?>>{
     }
 
     public void filter(Class<?> classe) throws EventoNaoEncontradoException{
-        for (Evento event : event_list){
+        for (Evento event : this.event_list){
             if (classe.isInstance(event)){
                 result.add(event);
             }

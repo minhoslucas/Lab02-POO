@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import lab02.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-class EventoPorLocalFilter implements Filtro<LocalDate>{
+class EventoPorDataFilter implements Filtro<LocalDate>{
     private ArrayList<Evento> event_list;
     private ArrayList<Evento> result;
 
-    EventoPorLocalFilter(ArrayList<Evento> event_list){
+    EventoPorDataFilter(ArrayList<Evento> event_list){
         this.result = new ArrayList<Evento>();
         this.event_list = event_list;
     }
@@ -19,7 +19,7 @@ class EventoPorLocalFilter implements Filtro<LocalDate>{
     }
 
     public void filter(LocalDate date) throws EventoNaoEncontradoException{
-        for (Evento event : event_list){
+        for (Evento event : this.event_list){
             if (event.getData().equals(date)){
                 result.add(event);
             }

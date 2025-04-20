@@ -18,7 +18,7 @@ class EventoPorNomeFilter implements Filtro<String>{
     }
 
     public void filter(String nome) throws EventoNaoEncontradoException{
-        for (Evento event : event_list){
+        for (Evento event : this.event_list){
             if (event.getNome().equals(nome)){
                 result.add(event);
             }

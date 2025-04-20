@@ -19,7 +19,7 @@ class EventoPorOrganizadorFilter implements Filtro<Organizadora>{
     }
 
     public void filter(Organizadora org) throws EventoNaoEncontradoException{
-        for (Evento event : event_list){
+        for (Evento event : this.event_list){
             if (event.getOrganizadora().equals(org)){
                 result.add(event);
             }
