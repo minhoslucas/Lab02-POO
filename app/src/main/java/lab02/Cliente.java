@@ -5,7 +5,6 @@ package lab02;
 
 import java.util.ArrayList;
 
-import lab02.events.Evento;
 import lab02.exceptions.CancelamentoNaoPermitidoException;
 import lab02.exceptions.IngressoNaoEncontradoException;
 import lab02.notifiable.Email;
