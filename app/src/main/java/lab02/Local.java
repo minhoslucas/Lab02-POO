@@ -74,9 +74,12 @@ public class Local{
             if (this.capacidadeMaxima < evento.getCapacidade()){
                 throw new CapacidadeInsuficienteException("local com capacidade insuficiênte");
             }
-            if (/*testar se o local já está alocado para outro evento*/){
-                throw new LocalIndisponivelException("Local indisponível para o evento");
+            for (Evento test : evento.getOrganizadora().getEventos()){
+                if (test.getLocal().equals(this)){
+                    throw new LocalIndisponivelException("Local indisponível para o evento");
+                }
             }
+            
             evento.setLocal(this);
         } catch (CapacidadeInsuficienteException e){
             System.out.println(e.getMessage());
