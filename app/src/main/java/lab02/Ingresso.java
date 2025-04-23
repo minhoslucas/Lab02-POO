@@ -6,6 +6,8 @@
 
 package lab02;
 
+import lab02.events.Evento;
+
 /**
  * Contém a estrutura de implementação de um Ingresso.
  */

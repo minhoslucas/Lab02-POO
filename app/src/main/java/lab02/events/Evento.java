@@ -2,10 +2,14 @@
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02;
+package lab02.events;
 
 import java.util.ArrayList;
 
+import lab02.Cliente;
+import lab02.Ingresso;
+import lab02.Local;
+import lab02.Organizadora;
 import lab02.exceptions.LocalNaoEncontradoException;
 import java.time.LocalDate;
 

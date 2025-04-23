@@ -4,8 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab02.filter.EventoPorDataFilter;
-import lab02.filter.Filtro;
+import lab02.events.Evento;
+import lab02.events.EventoFestival;
+import lab02.events.EventoJogo;
+import lab02.events.EventoMusicaAoVivo;
+import lab02.events.EventoShow;
+import lab02.exceptions.EventoNaoEncontradoException;
+import lab02.filter.FilterInterface;
 
 public class Organizadora {
 
@@ -72,8 +77,15 @@ public class Organizadora {
         this.eventos.add(evento);
     }
 
-    public ArrayList<Evento> buscarEventos(Filtro filtro){
-        
+    public ArrayList<Evento> buscarEventos(FilterInterface<Evento> filtro){
+        ArrayList<Evento> result;
+        try{
+            result = filtro.filter(this.eventos);
+        }catch (EventoNaoEncontradoException e){
+            result = new ArrayList<Evento>();
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
     
 }

@@ -1,7 +1,10 @@
-package lab02;
+package lab02.events;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import lab02.Local;
+import lab02.Organizadora;
 
 public class EventoMusicaAoVivo extends Evento {
 

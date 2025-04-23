@@ -5,13 +5,15 @@ package lab02;
 
 import java.util.ArrayList;
 
+import lab02.events.Evento;
 import lab02.exceptions.CancelamentoNaoPermitidoException;
 import lab02.exceptions.IngressoNaoEncontradoException;
+import lab02.notifiable.Email;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 
     private String nome;
-    private String email;
+    private Email email;
     private ArrayList<Ingresso> ingressos;
     
 
@@ -20,7 +22,7 @@ public class Cliente {
      * @param nome o nome do cliente
      * @param email o email do cliente
      */
-    public Cliente(String nome, String email){
+    public Cliente(String nome, Email email){
         this.nome = nome;
         this.email = email;
         this.ingressos = new ArrayList<Ingresso>();
@@ -46,7 +48,7 @@ public class Cliente {
      * Retorna o email do cliente
      * @return o email do cliente
      */
-    public String getEmail(){
+    public Email getEmail(){
         return email;
     }
 
@@ -54,7 +56,7 @@ public class Cliente {
      * Altera o email do cliente para `email` 
      * @param email o novo email do cliente
      */
-    public void setEmail(String email){
+    public void setEmail(Email email){
         this.email = email;
     }
     /**
@@ -105,5 +107,18 @@ public class Cliente {
         } catch (IngressoNaoEncontradoException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<Ingresso> compareTo(Cliente cliente){
+        ArrayList<Ingresso> result = new ArrayList<Ingresso>();
+        for (Ingresso ingresso_curr : ingressos){
+            for (Ingresso ingresso_comp : ingressos){
+                if (ingresso_comp.equals(ingresso_curr)){
+                    result.add(ingresso_comp);
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }

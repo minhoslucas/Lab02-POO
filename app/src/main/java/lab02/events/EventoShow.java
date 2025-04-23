@@ -3,9 +3,12 @@
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02;
+package lab02.events;
 
 import java.time.LocalDate;
+
+import lab02.Local;
+import lab02.Organizadora;
 
 public class EventoShow extends Evento {
         

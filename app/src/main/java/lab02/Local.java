@@ -5,6 +5,7 @@
  */
 package lab02;
 
+import lab02.events.Evento;
 import lab02.exceptions.CapacidadeInsuficienteException;
 import lab02.exceptions.LocalIndisponivelException;
 

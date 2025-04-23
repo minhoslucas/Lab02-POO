@@ -1,7 +1,8 @@
 package lab02.filter;
 
 import java.util.ArrayList;
-import lab02.Evento;
+
+import lab02.events.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
 public class EventoPorTipoFilter implements FilterInterface<Class<?>>{
