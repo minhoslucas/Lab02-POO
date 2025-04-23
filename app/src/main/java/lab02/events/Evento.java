@@ -6,11 +6,10 @@ package lab02.events;
 
 import java.util.ArrayList;
 
-import lab02.Cliente;
-import lab02.Ingresso;
-import lab02.Local;
-import lab02.Organizadora;
+import lab02.client.Cliente;
 import lab02.exceptions.LocalNaoEncontradoException;
+import lab02.tickets.Ingresso;
+
 import java.time.LocalDate;
 
 public abstract class Evento {

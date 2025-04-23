@@ -4,14 +4,14 @@
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02;
+package lab02.tickets;
 
 import lab02.events.Evento;
 
 /**
  * Contém a estrutura de implementação de um Ingresso.
  */
-public class Ingresso {
+public abstract class Ingresso {
 
     private Evento evento;
     private double preco;
@@ -29,13 +29,14 @@ public class Ingresso {
     }
 
     /**
-     * Retorna o preço do Ingresso
-     * @return o preço do Ingresso
+     * Retorna o preço base do Ingresso
+     * @return o preço base do Ingresso
      */
-    public double getPreco() {
-
+    public double getPrecoBase(){
         return this.preco;
     }
+
+    public abstract double getPreco();
 
     /**
      * Define o evento associado ao Ingresso

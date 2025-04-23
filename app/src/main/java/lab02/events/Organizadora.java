@@ -1,14 +1,9 @@
-package lab02;
+package lab02.events;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import lab02.events.Evento;
-import lab02.events.EventoFestival;
-import lab02.events.EventoJogo;
-import lab02.events.EventoMusicaAoVivo;
-import lab02.events.EventoShow;
 import lab02.exceptions.EventoNaoEncontradoException;
 import lab02.filter.FilterInterface;
 

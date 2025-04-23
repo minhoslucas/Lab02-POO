@@ -1,13 +1,14 @@
 /*
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
-package lab02;
+package lab02.client;
 
 import java.util.ArrayList;
 
 import lab02.exceptions.CancelamentoNaoPermitidoException;
 import lab02.exceptions.IngressoNaoEncontradoException;
 import lab02.notifiable.Email;
+import lab02.tickets.Ingresso;
 
 public class Cliente implements Comparable<Cliente>{
 

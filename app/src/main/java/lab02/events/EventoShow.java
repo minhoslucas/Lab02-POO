@@ -7,9 +7,6 @@ package lab02.events;
 
 import java.time.LocalDate;
 
-import lab02.Local;
-import lab02.Organizadora;
-
 public class EventoShow extends Evento {
         
     private String artista;

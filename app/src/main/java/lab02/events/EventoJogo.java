@@ -8,9 +8,6 @@ package lab02.events;
 import java.time.LocalDate;
 import java.util.List;
 
-import lab02.Local;
-import lab02.Organizadora;
-
 public class EventoJogo extends Evento {
         
     private List<String> times;
