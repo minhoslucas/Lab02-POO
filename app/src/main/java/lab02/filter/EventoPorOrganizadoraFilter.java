@@ -2,14 +2,15 @@ package lab02.filter;
 
 import java.util.ArrayList;
 import lab02.Evento;
+import lab02.Organizadora;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorNomeFilter implements FilterInterface<String>{
+public class EventoPorOrganizadoraFilter implements FilterInterface<Organizadora>{
 
-    private String nome;
+    private Organizadora organizadora;
 
-    public EventoPorNomeFilter(String nome){
-        this.nome = nome;
+    public EventoPorOrganizadoraFilter(Organizadora organizadora){
+        this.organizadora = organizadora;
     }
 
     @Override
@@ -17,7 +18,7 @@ public class EventoPorNomeFilter implements FilterInterface<String>{
         ArrayList<Evento> result = new ArrayList<Evento>();
 
         for (Evento test : eventos){
-            if(test.getNome().equals(this.nome)){
+            if(test.getOrganizadora().equals(this.organizadora)){
                 result.add(test);
             }
         }

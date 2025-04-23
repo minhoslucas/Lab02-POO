@@ -4,23 +4,26 @@ import java.util.ArrayList;
 import lab02.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorTipoFilter extends Filtro<Class<?>>{
-    private ArrayList<Evento> event_list;
-    private ArrayList<Evento> result;
+public class EventoPorTipoFilter implements FilterInterface<Class<?>>{
 
-    EventoPorTipoFilter(ArrayList<Evento> event_list){
-        super(event_list);
+    private Class<?> classe;
+
+    public EventoPorTipoFilter(Class<?> classe){
+        this.classe = classe;
     }
 
     @Override
-    public void filter(Class<?> classe) throws EventoNaoEncontradoException{
-        for (Evento event : this.event_list){
-            if (classe.isInstance(event)){
-                result.add(event);
+    public ArrayList<Evento> filter(ArrayList<Evento> eventos) throws EventoNaoEncontradoException{
+        ArrayList<Evento> result = new ArrayList<Evento>();
+
+        for (Evento test : eventos){
+            if(this.classe.isInstance(test)){
+                result.add(test);
             }
         }
-        if (event_list.size() == 0){
-            throw new EventoNaoEncontradoException("Evento Não Encontrado");
+        if (result.size() == 0){
+            throw new EventoNaoEncontradoException("EVENTO NÃO ENCONTRADO");
         }
+        return result;
     }
 }
