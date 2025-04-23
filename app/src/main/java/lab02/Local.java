@@ -5,6 +5,9 @@
  */
 package lab02;
 
+import lab02.exceptions.CapacidadeInsuficienteException;
+import lab02.exceptions.LocalIndisponivelException;
+
 /**
  * Contém a estrutura de implementação de um Local.
  * 
@@ -13,14 +16,16 @@ package lab02;
 public class Local{
     private String nome;
     private double capacidadeMaxima;
+    private ImobiliariaDeEventos imobiliaria;
 
     /**
      * Construtor da classe Local
      * @param nome o nome do local
      */
-    public Local(String nome, double capacidadeMaxima){
+    public Local(String nome, double capacidadeMaxima, ImobiliariaDeEventos imoboliaria){
         this.nome = nome;
         this.capacidadeMaxima = capacidadeMaxima;
+        this.imobiliaria = imoboliaria;
     }
 
     /**
@@ -53,5 +58,29 @@ public class Local{
      */
     public void setCapacidade(double capacidadeMaxima){
         this.capacidadeMaxima = capacidadeMaxima;
+    }
+
+    public ImobiliariaDeEventos getImobiliaria(){
+        return this.imobiliaria;
+    }
+
+    public void setImobiliaria(ImobiliariaDeEventos imobiliaria){
+        this.imobiliaria = imobiliaria;
+    }
+
+    public void alocarParaEvento(Evento evento) {
+        try{
+            if (this.capacidadeMaxima < evento.getCapacidade()){
+                throw new CapacidadeInsuficienteException("local com capacidade insuficiênte");
+            }
+            if (/*testar se o local já está alocado para outro evento*/){
+                throw new LocalIndisponivelException("Local indisponível para o evento");
+            }
+            evento.setLocal(this);
+        } catch (CapacidadeInsuficienteException e){
+            System.out.println(e.getMessage());
+        } catch (LocalIndisponivelException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

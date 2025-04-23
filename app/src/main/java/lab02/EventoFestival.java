@@ -4,6 +4,7 @@
 
 package lab02;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EventoFestival extends Evento {
@@ -19,8 +20,8 @@ public class EventoFestival extends Evento {
     * @param dataInicio a data de início do Festival
     * @param dataFim a data de fim do Festival
     */
-    public EventoFestival(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> lineup, int duracao) {
-        super(nome, local, precoIngresso, organizadora, data);
+    public EventoFestival(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, List<String> lineup, int duracao) {
+        super(nome, local, capacidade, precoIngresso, organizadora, data);
         this.lineup = lineup;
         this.duracao = duracao;
     }
@@ -48,15 +49,6 @@ public class EventoFestival extends Evento {
      */
     @Override
     public String descricao() {
-        return "Festival: " + this.nome + " - Lineup: " + this.lineup + " - Local: " + this.local + " - Duração: " + this.duracao;
-    }
-
-    /**
-    * Retorna o preço do Ingresso do Evento
-    * @return o preço do Ingresso do Evento
-    */
-    @Override
-    public double getPrecoIngresso() {
-        return this.precoIngresso;
+        return "Festival: " + this.getNome() + " - Lineup: " + this.lineup + " - Local: " + this.getLocal().getNome() + " - Duração: " + this.duracao;
     }
 }

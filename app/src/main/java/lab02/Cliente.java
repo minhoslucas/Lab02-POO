@@ -5,6 +5,9 @@ package lab02;
 
 import java.util.ArrayList;
 
+import lab02.exceptions.CancelamentoNaoPermitidoException;
+import lab02.exceptions.IngressoNaoEncontradoException;
+
 public class Cliente {
 
     private String nome;
@@ -76,7 +79,31 @@ public class Cliente {
         this.ingressos = ingressos;
     }
 
-    public void removerIngresso(Ingresso ingresso) {
+    private void removerIngresso(Ingresso ingresso) {
         this.ingressos.remove(ingresso);
+    }
+
+    public void cancelarIngresso(Ingresso ingresso) {
+        try{
+            boolean found = false;
+            if (!ingresso.isCancelable()){
+                throw new CancelamentoNaoPermitidoException("O ingresso não pode ser cancelado");
+            }
+            for (Ingresso test : ingressos){
+                if (test.equals(ingresso)){
+                    found = true;
+                    break;
+                }
+            }
+            if (!found){
+                throw new IngressoNaoEncontradoException("Ingresso não encontrado");
+            }
+            this.removerIngresso(ingresso);
+            System.out.println("Ingresso cancelado com sucesso");
+        } catch (CancelamentoNaoPermitidoException e){
+            System.out.println(e.getMessage());
+        } catch (IngressoNaoEncontradoException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

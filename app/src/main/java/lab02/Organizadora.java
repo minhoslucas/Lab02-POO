@@ -1,7 +1,11 @@
 package lab02;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import lab02.filter.EventoPorDataFilter;
+import lab02.filter.Filtro;
 
 public class Organizadora {
 
@@ -23,24 +27,24 @@ public class Organizadora {
         this.eventos = new ArrayList<Evento>();
     }
 
-    public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, 
+    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, 
                             List<String> lineup, int duracao) {
-        EventoFestival novo_evento = new EventoFestival(nome, local, precoIngresso, organizadora, data, lineup, duracao);
+        EventoFestival novo_evento = new EventoFestival(nome, local, capacidade, precoIngresso, organizadora, data, lineup, duracao);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> times) {
-        EventoJogo novo_evento = new EventoJogo(nome, local, precoIngresso, organizadora, data, times);
+    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, List<String> times) {
+        EventoJogo novo_evento = new EventoJogo(nome, local, capacidade, precoIngresso, organizadora, data, times);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, int duration) {
-        EventoMusicaAoVivo novo_evento = new EventoMusicaAoVivo(nome, local, precoIngresso, organizadora, data, duration);
+    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, int duration) {
+        EventoMusicaAoVivo novo_evento = new EventoMusicaAoVivo(nome, local, capacidade, precoIngresso, organizadora, data, duration);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista) {
-        EventoShow novo_evento = new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
+    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, String artista) {
+        EventoShow novo_evento = new EventoShow(nome, local, capacidade, precoIngresso, organizadora, data, artista);
         return novo_evento;
     }
 
@@ -68,5 +72,6 @@ public class Organizadora {
         this.eventos.add(evento);
     }
 
+    public ArrayList<Evento> buscarEventos(Filtro filtro);
     
 }

@@ -5,6 +5,8 @@
 
 package lab02;
 
+import java.time.LocalDate;
+
 public class EventoShow extends Evento {
         
     private String artista;
@@ -17,8 +19,8 @@ public class EventoShow extends Evento {
     * @param artista o artista do Evento
     * @param organizadora a organizadora do Evento
     */
-    public EventoShow(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista) {
-        super(nome, local, precoIngresso, organizadora, data);
+    public EventoShow(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, String artista) {
+        super(nome, local, capacidade, precoIngresso, organizadora, data);
         this.artista = artista;
 
     }
@@ -28,14 +30,6 @@ public class EventoShow extends Evento {
     * @return a descrição do Evento
     */
     public String getDescricao() {
-        return "Show: " + this.nome + " - Artista: " + this.artista  + " - Local: " + this.local + " - Data: " + this.data;
-    }
-    
-    /**
-    * Retorna o preço do Ingresso do Evento
-    * @return o preço do Ingresso do Evento
-    */
-    public double getPrecoIngresso() {
-        return this.precoIngresso;
+        return "Show: " + this.getNome() + " - Artista: " + this.artista  + " - Local: " + this.getLocal().getNome() + " - Data: " + this.getData();
     }
 }

@@ -1,5 +1,6 @@
 package lab02;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EventoMusicaAoVivo extends Evento {
@@ -7,8 +8,8 @@ public class EventoMusicaAoVivo extends Evento {
     private ArrayList<String> setlist;
     private int duration;
 
-    public EventoMusicaAoVivo(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, int duration) {
-        super(nome, local, precoIngresso, organizadora, data);
+    public EventoMusicaAoVivo(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, int duration) {
+        super(nome, local, capacidade, precoIngresso, organizadora, data);
         this.duration = duration;
         this.setlist = new ArrayList<String>();
     }
@@ -27,7 +28,7 @@ public class EventoMusicaAoVivo extends Evento {
 
     @Override
     public String descricao() {
-        return "Local: " + this.local + "\n"
+        return "Local: " + this.getLocal().getNome() + "\n"
         + "setlist: " + this.setlist + "\n"
         + "Duração: " + this.duration;
     }

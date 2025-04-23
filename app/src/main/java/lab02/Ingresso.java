@@ -13,15 +13,17 @@ public class Ingresso {
 
     private Evento evento;
     private double preco;
+    private boolean is_cancelable;
 
     /**
      * Construtor da classe Ingresso
      * @param preco o preço do Ingresso
      * @param evento o evento associado ao Ingresso
      */
-    public Ingresso(Evento evento, double preco) {
+    public Ingresso(Evento evento, double preco, boolean is_cancelable) {
         this.evento = evento;
         this.preco = preco;
+        this.is_cancelable = is_cancelable;
     }
 
     /**
@@ -47,5 +49,13 @@ public class Ingresso {
      */
     public Evento getEvento() {
         return this.evento;
+    }
+
+    public boolean isCancelable() {
+        return this.is_cancelable;
+    }
+    
+    public void setCancelable(boolean is_cancelable) {
+        this.is_cancelable = is_cancelable;
     }
 }
