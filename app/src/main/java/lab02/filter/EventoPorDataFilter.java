@@ -5,23 +5,7 @@ import java.util.ArrayList;
 import lab02.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorDataFilter extends Filtro<LocalDate>{
-    private ArrayList<Evento> event_list;
-    private ArrayList<Evento> result;
 
-    EventoPorDataFilter(ArrayList<Evento> event_list){
-        super(event_list);
-    }
+public class EventoPorDataFilter implements FilterInterface<>{
 
-    @Override
-    public void filter(LocalDate date) throws EventoNaoEncontradoException{
-        for (Evento event : this.event_list){
-            if (event.getData().equals(date)){
-                result.add(event);
-            }
-        }
-        if (event_list.size() == 0){
-            throw new EventoNaoEncontradoException("Evento Não Encontrado");
-        }
-    }
 }

@@ -72,6 +72,8 @@ public class Organizadora {
         this.eventos.add(evento);
     }
 
-    public ArrayList<Evento> buscarEventos(Filtro filtro);
+    public ArrayList<Evento> buscarEventos(Filtro filtro){
+        
+    }
     
 }
