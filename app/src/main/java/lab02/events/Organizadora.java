@@ -2,9 +2,6 @@ package lab02.events;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-
-import lab02.events.characteristics.CaracteristicaDeEvento;
 import lab02.events.characteristics.CaracteristicaDeEventoFestival;
 import lab02.events.characteristics.CaracteristicaDeEventoJogo;
 import lab02.events.characteristics.CaracteristicaDeEventoMusicaAoVivo;
