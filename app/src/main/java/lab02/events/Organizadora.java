@@ -29,26 +29,26 @@ public class Organizadora {
         this.eventos = new ArrayList<Evento>();
     }
 
-    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, 
+    public EventoFestival criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, 
                             ArrayList<String> lineup, int duracao) {
         CaracteristicaDeEventoFestival caracteristicas = new CaracteristicaDeEventoFestival(lineup, duracao);
         EventoFestival novo_evento = new EventoFestival(caracteristicas, precoIngresso, nome, local, capacidade, organizadora, data);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, ArrayList<String> times, String tipo) {
+    public EventoJogo criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, ArrayList<String> times, String tipo) {
         CaracteristicaDeEventoJogo caracteristicas = new CaracteristicaDeEventoJogo(times, tipo);
         EventoJogo novo_evento = new EventoJogo(nome, local, caracteristicas, precoIngresso, capacidade, organizadora, data);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, int duration, ArrayList<String> setlist) {
+    public EventoMusicaAoVivo criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, int duration, ArrayList<String> setlist) {
         CaracteristicaDeEventoMusicaAoVivo caracteristicas = new CaracteristicaDeEventoMusicaAoVivo(setlist, duration);
         EventoMusicaAoVivo novo_evento = new EventoMusicaAoVivo(nome, local, precoIngresso, caracteristicas, capacidade, organizadora, data);
         return novo_evento;
     }
 
-    public Evento criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, String artista) {
+    public EventoShow criaEvento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, String artista) {
         CaracteristicaDeEventoShow caracteristicas = new CaracteristicaDeEventoShow(artista);
         EventoShow novo_evento = new EventoShow(nome, local, precoIngresso, caracteristicas, capacidade, organizadora, data);
         return novo_evento;
@@ -76,6 +76,14 @@ public class Organizadora {
 
     public void adicionaEvento(Evento evento) {
         this.eventos.add(evento);
+    }
+
+    public void showEventos(){
+        int i = 1;
+        for (Evento evento : this.eventos){
+            System.out.println(i + ">" + evento.getNome() + "- R$" + evento.getPrecoIngresso());
+            i += 1;
+        }
     }
 
     public ArrayList<Evento> buscarEventos(FilterInterface<Evento> filtro){

@@ -48,6 +48,10 @@ public class ImobiliariaDeEventos {
         this.nome = nome;
     }
 
+    public ArrayList<Local> getLocais(){
+        return this.locais;
+    }
+
     public ArrayList<Local> buscaLocal(String nome) throws LocalNaoEncontradoException{
         ArrayList<Local> locais = new ArrayList<Local>();
         for (Local test : this.locais) {

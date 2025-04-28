@@ -8,7 +8,8 @@
  import java.util.ArrayList;
  
  import lab02.client.Cliente;
- import lab02.exceptions.LocalNaoEncontradoException;
+import lab02.exceptions.IngressoEsgotadoException;
+import lab02.exceptions.LocalNaoEncontradoException;
  import lab02.tickets.Ingresso;
  
  /**
@@ -139,9 +140,9 @@
       * @param ingresso Ingresso a ser vendido
       * @throws LocalNaoEncontradoException Se o evento estiver lotado
       */
-     public void venderIngresso(Cliente cliente, Ingresso ingresso) throws LocalNaoEncontradoException {
+     public void venderIngresso(Cliente cliente, Ingresso ingresso) throws IngressoEsgotadoException{
          if (ingresso.getEvento().isFull()) {
-             throw new LocalNaoEncontradoException("EVENTO LOTADO");
+             throw new IngressoEsgotadoException("EVENTO LOTADO");
          }
          cliente.adicionarIngresso(ingresso);
          System.out.println("Ingresso Vendido com Sucesso!");
