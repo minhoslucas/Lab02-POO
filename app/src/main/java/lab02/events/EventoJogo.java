@@ -5,29 +5,23 @@
 
 package lab02.events;
 
+
 import java.time.LocalDate;
-import java.util.List;
+
+import lab02.events.characteristics.CaracteristicaDeEventoJogo;
 
 public class EventoJogo extends Evento {
         
-    private List<String> times;
+    private CaracteristicaDeEventoJogo caracteristicas;
     /**
     * Construtor da classe EventoEsporte
     * @param nome o nome do Evento
     * @param local o local do Evento
     * @param precoIngresso o preço do Ingresso do Evento
     */
-    public EventoJogo(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, List<String> times) {
-        super(nome, local, capacidade, precoIngresso, organizadora, data);
-        this.times = times;
-    }
-
-    /**
-     * Retorna a lista com os nomes dos times que se enfrentam no Evento
-     * @return a lista com os nomes dos times do Evento
-     */
-    public List<String> getTimes() {
-        return times;
+    public EventoJogo(String nome, Local local, CaracteristicaDeEventoJogo caracteristicas, double precoIngresso, int capacidade, Organizadora organizadora, LocalDate data) {
+        super(precoIngresso, nome, local, capacidade, data, organizadora);
+        this.caracteristicas = caracteristicas;
     }
 
     /**
@@ -35,7 +29,10 @@ public class EventoJogo extends Evento {
      * @return uma string com a descri o do Evento
      */
     @Override
-    public String descricao() {
-        return "Esporte: " + this.getNome() + " - Times: " + this.times + " - Local: " + this.getLocal().getNome();
+    public void descricao(){
+        String text = "Nome do Jogo: " + this.getNome() + "\n" +
+        "Local do Jogo: " + this.getLocal().getNome() + "\n" +
+        this.caracteristicas.descricao();
+        System.out.println(text);
     }
 }

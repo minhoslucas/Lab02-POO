@@ -4,21 +4,21 @@
 
 package lab02.events;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import lab02.client.Cliente;
 import lab02.exceptions.LocalNaoEncontradoException;
 import lab02.tickets.Ingresso;
 
-import java.time.LocalDate;
+public abstract class Evento{
 
-public abstract class Evento {
     private String nome;
     private Local local;
+    private LocalDate data;
+    private Organizadora organizadora;
     private int capacidade;
     private double precoIngresso; // preço base do ingresso
-    private Organizadora organizadora;
-    private LocalDate data;
     private ArrayList<Ingresso> listaIngressos;
 
     /**
@@ -26,56 +26,18 @@ public abstract class Evento {
      * @param nome o nome do Evento
      * @param local o local associado ao Evento
      */
-    public Evento(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data) {
+    public Evento(double precoIngresso, String nome, Local local, int capacidade, LocalDate data, Organizadora organizadora) {
+        this.data = data;
+        this.organizadora = organizadora;
         this.nome = nome;
         this.local = local;
         this.capacidade = capacidade;
         this.precoIngresso = precoIngresso; // modificar para representar o preço base do ingresso
-        this.organizadora = organizadora;
-        this.data = data;
         this.listaIngressos = new ArrayList<Ingresso>();
 
     }
     private boolean isFull(){
         return this.listaIngressos.size() + 1 > this.local.getCapacidade();
-    }
-    /**
-     * Retorna o nome do Evento
-     * @return o nome do Evento
-     */
-    public String getNome(){
-        return nome;
-    }
-
-    /**
-     * Altera o nome do Evento para `nome` 
-     * @param nome o novo nome do Evento
-     */
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    /**
-     * Retorna o Local do Evento
-     * @return o local do Evento
-     */
-    public Local getLocal() {
-        return local;
-    }
-
-    /**
-     * Altera o local do Evento para `local` 
-     * @param local o novo local do Evento
-     */
-    public void setLocal(Local local) {
-        this.local = local;
-    }
-
-    public int getCapacidade() {
-        return capacidade;
-    }
-    public void setCapacidade(int capacidade) {
-        this.capacidade = capacidade;
     }
 
     /**
@@ -84,6 +46,30 @@ public abstract class Evento {
      */
     public double getPrecoIngresso(){
         return this.precoIngresso;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public Local getLocal(){
+        return this.local;
+    }
+
+    public void setLocal(Local local){
+        this.local = local;
+    }
+
+    public int getCapacidade(){
+        return this.capacidade;
+    }
+
+    public LocalDate getData(){
+        return this.data;
+    }
+
+    public Organizadora getOrganizadora(){
+        return this.organizadora;
     }
 
     /**
@@ -102,19 +88,7 @@ public abstract class Evento {
         System.out.println("Ingresso Vendido com Sucesso!");
     }
 
-    /**
-     * Retorna a data do Evento
-     * @return a data do Evento
-     */
-    public LocalDate getData() {
-        return data;
-    }
-
-    public Organizadora getOrganizadora(){
-        return this.organizadora;
-    }
-
-    public String descricao(){
-        return "Evento: " + this.nome + " - Local: " + this.local;
+    public void descricao(){
+        System.out.println("Evento: " + this.nome + " - Local: " + this.local);
     }
 }

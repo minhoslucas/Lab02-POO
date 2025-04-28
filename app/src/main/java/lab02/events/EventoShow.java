@@ -7,10 +7,11 @@ package lab02.events;
 
 import java.time.LocalDate;
 
+import lab02.events.characteristics.CaracteristicaDeEventoShow;
+
 public class EventoShow extends Evento {
         
-    private String artista;
-    
+    private CaracteristicaDeEventoShow caracteristicas;    
     /**
     * Construtor da classe EventocShow
     * @param nome o nome do Evento
@@ -19,17 +20,22 @@ public class EventoShow extends Evento {
     * @param artista o artista do Evento
     * @param organizadora a organizadora do Evento
     */
-    public EventoShow(String nome, Local local, int capacidade, double precoIngresso, Organizadora organizadora, LocalDate data, String artista) {
-        super(nome, local, capacidade, precoIngresso, organizadora, data);
-        this.artista = artista;
-
+    public EventoShow(String nome, Local local, double precoIngresso, CaracteristicaDeEventoShow caracteristicas, int capacidade, Organizadora organizadora, LocalDate data) {
+        super(precoIngresso, nome, local, capacidade, data, organizadora);
+        this.caracteristicas = caracteristicas;
     }
 
     /**
     * Retorna a descrição do Evento
     * @return a descrição do Evento
     */
-    public String getDescricao() {
-        return "Show: " + this.getNome() + " - Artista: " + this.artista  + " - Local: " + this.getLocal().getNome() + " - Data: " + this.getData();
+    @Override
+    public void descricao(){
+        String text = "Nome do Show: " + this.getNome() + "\n" +
+        "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
+        "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
+        "Data: " + this.getData() + "\n" +
+        this.caracteristicas.descricao();
+        System.out.println(text);
     }
 }
