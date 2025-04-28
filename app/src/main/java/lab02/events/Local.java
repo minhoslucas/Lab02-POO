@@ -65,7 +65,14 @@ public class Local{
     }
 
     public void setImobiliaria(ImobiliariaDeEventos imobiliaria){
-        this.imobiliaria = imobiliaria;
+        try {
+            if (imobiliaria == null) {
+                throw new IllegalArgumentException("Imobiliária não pode ser nula");
+            }
+            this.imobiliaria = imobiliaria;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void alocarParaEvento(Evento evento) {

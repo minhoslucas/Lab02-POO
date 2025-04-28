@@ -1,41 +1,76 @@
 /*
-
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02.events;
+ package lab02.events;
 
-import java.time.LocalDate;
-
-import lab02.events.characteristics.CaracteristicaDeEventoShow;
-
-public class EventoShow extends Evento {
-        
-    private CaracteristicaDeEventoShow caracteristicas;    
-    /**
-    * Construtor da classe EventocShow
-    * @param nome o nome do Evento
-    * @param local o local do Evento
-    * @param precoIngresso o preço do Ingresso do Evento
-    * @param artista o artista do Evento
-    * @param organizadora a organizadora do Evento
-    */
-    public EventoShow(String nome, Local local, double precoIngresso, CaracteristicaDeEventoShow caracteristicas, int capacidade, Organizadora organizadora, LocalDate data) {
-        super(precoIngresso, nome, local, capacidade, data, organizadora);
-        this.caracteristicas = caracteristicas;
-    }
-
-    /**
-    * Retorna a descrição do Evento
-    * @return a descrição do Evento
-    */
-    @Override
-    public void descricao(){
-        String text = "Nome do Show: " + this.getNome() + "\n" +
-        "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
-        "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
-        "Data: " + this.getData() + "\n" +
-        this.caracteristicas.descricao();
-        System.out.println(text);
-    }
-}
+ import java.time.LocalDate;
+ import lab02.events.characteristics.CaracteristicaDeEventoShow;
+ 
+ /**
+  * Classe que representa um evento do tipo Show.
+  * Contém características específicas de shows artísticos.
+  * 
+  * @author Lucas Beserra - 281815
+  *
+  * Comentarios feitos por IA
+  */
+ public class EventoShow extends Evento {
+     
+     /** Características específicas do show */
+     private CaracteristicaDeEventoShow caracteristicas;    
+     
+     /**
+      * Construtor da classe EventoShow
+      * @param nome Nome do show
+      * @param local Local da apresentação
+      * @param precoIngresso Preço do ingresso
+      * @param caracteristicas Características do show
+      * @param capacidade Capacidade máxima
+      * @param organizadora Organizadora responsável
+      * @param data Data do show
+      */
+     public EventoShow(String nome, Local local, double precoIngresso, 
+                      CaracteristicaDeEventoShow caracteristicas, int capacidade, 
+                      Organizadora organizadora, LocalDate data) {
+         super(precoIngresso, nome, local, capacidade, data, organizadora);
+         this.caracteristicas = caracteristicas;
+     }
+ 
+     /**
+      * Obtém as características do show
+      * @return Características do show
+      */
+     public CaracteristicaDeEventoShow getCaracteristicas() {
+         return this.caracteristicas;
+     }
+ 
+     /**
+      * Define as características do show
+      * @param caracteristicas Novas características do show
+      * @throws IllegalArgumentException Se as características forem nulas
+      */
+     public void setCaracteristicas(CaracteristicaDeEventoShow caracteristicas) {
+         try {
+             if (caracteristicas == null) {
+                 throw new IllegalArgumentException("As características do evento não podem ser nulas.");
+             }
+             this.caracteristicas = caracteristicas;
+         } catch (IllegalArgumentException e) {
+             System.err.println(e.getMessage());
+         }
+     }
+ 
+     /**
+      * Exibe a descrição completa do show
+      */
+     @Override
+     public void descricao() {
+         String text = "Nome do Show: " + this.getNome() + "\n" +
+                     "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
+                     "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
+                     "Data: " + this.getData() + "\n" +
+                     this.caracteristicas.descricao();
+         System.out.println(text);
+     }
+ }

@@ -1,6 +1,5 @@
 package lab02.notifiable;
 
-import org.checkerframework.checker.units.qual.degrees;
 
 public class Email implements Notifiable{
 
