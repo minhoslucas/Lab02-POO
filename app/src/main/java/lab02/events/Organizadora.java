@@ -7,7 +7,7 @@ import lab02.events.characteristics.CaracteristicaDeEventoJogo;
 import lab02.events.characteristics.CaracteristicaDeEventoMusicaAoVivo;
 import lab02.events.characteristics.CaracteristicaDeEventoShow;
 import lab02.exceptions.EventoNaoEncontradoException;
-import lab02.filter.FilterInterface;
+import lab02.filter.Filter;
 
 public class Organizadora {
 
@@ -86,7 +86,7 @@ public class Organizadora {
         }
     }
 
-    public ArrayList<Evento> buscarEventos(FilterInterface<Evento> filtro){
+    public ArrayList<Evento> buscarEventos(Filter<?> filtro){
         ArrayList<Evento> result;
         try{
             result = filtro.filter(this.eventos);

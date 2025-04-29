@@ -6,7 +6,7 @@ import lab02.events.Evento;
 import lab02.events.Local;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorLocalFilter implements FilterInterface<Local>{
+public class EventoPorLocalFilter extends Filter<Local>{
 
     private Local local;
 

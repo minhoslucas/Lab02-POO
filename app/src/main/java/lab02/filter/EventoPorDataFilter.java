@@ -7,7 +7,7 @@ import lab02.events.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
 
-public class EventoPorDataFilter implements FilterInterface<LocalDate>{
+public class EventoPorDataFilter extends Filter<LocalDate>{
 
     private LocalDate data;
 

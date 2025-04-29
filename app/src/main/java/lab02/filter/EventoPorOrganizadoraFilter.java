@@ -6,7 +6,7 @@ import lab02.events.Evento;
 import lab02.events.Organizadora;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorOrganizadoraFilter implements FilterInterface<Organizadora>{
+public class EventoPorOrganizadoraFilter extends Filter<Organizadora>{
 
     private Organizadora organizadora;
 

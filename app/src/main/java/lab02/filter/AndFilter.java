@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import lab02.events.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class AndFilter implements FilterInterface<Evento>{
+public class AndFilter extends Filter<Evento>{
     
-    private FilterInterface<Evento> filter_1;
-    private FilterInterface<Evento> filter_2;
+    private Filter<?> filter_1;
+    private Filter<?> filter_2;
 
-    public AndFilter(FilterInterface<Evento> filter_1, FilterInterface<Evento> filter_2){
+    public AndFilter(Filter<?> filter_1, Filter<?> filter_2){
         this.filter_1 = filter_1;
         this.filter_2 = filter_2;
     }

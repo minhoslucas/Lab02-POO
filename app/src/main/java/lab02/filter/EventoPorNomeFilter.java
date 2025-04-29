@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import lab02.events.Evento;
 import lab02.exceptions.EventoNaoEncontradoException;
 
-public class EventoPorNomeFilter implements FilterInterface<String>{
+public class EventoPorNomeFilter extends Filter<String>{
 
     private String nome;
 
