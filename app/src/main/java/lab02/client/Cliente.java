@@ -109,16 +109,7 @@ public class Cliente implements Comparable<Cliente>{
         }
     }
 
-    public ArrayList<Ingresso> compareTo(Cliente cliente){
-        ArrayList<Ingresso> result = new ArrayList<Ingresso>();
-        for (Ingresso ingresso_curr : ingressos){
-            for (Ingresso ingresso_comp : ingressos){
-                if (ingresso_comp.equals(ingresso_curr)){
-                    result.add(ingresso_comp);
-                    break;
-                }
-            }
-        }
-        return result;
+    public boolean compareTo(Cliente cliente){
+        return this.ingressos.equals(cliente.getIngressos());
     }
 }
