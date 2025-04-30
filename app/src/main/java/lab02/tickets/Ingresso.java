@@ -61,4 +61,11 @@ public abstract class Ingresso {
     public void setCancelable(boolean is_cancelable) {
         this.is_cancelable = is_cancelable;
     }
+
+    @Override
+
+    public String toString(){
+        return "Ingresso para: " + this.evento.getNome() + "\n" +
+        "Preço: " + this.preco;
+    }
 }

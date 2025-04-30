@@ -15,6 +15,7 @@ import lab02.events.ImobiliariaDeEventos;
 import lab02.events.Local;
 import lab02.events.Organizadora;
 import lab02.exceptions.IngressoEsgotadoException;
+import lab02.exceptions.LocalNaoEncontradoException;
 import lab02.notifiable.Email;
 import lab02.tickets.IngressoInteira;
 import lab02.tickets.IngressoMeia;
@@ -39,7 +40,7 @@ public class App {
         Cliente cliente_1 = new Cliente("Lucas Beserra", new Email("lucas@gmail.com"));
         Cliente cliente_2 = new Cliente("Carlos Fernandes", new Email("carlos@gmail.com"));
 
-        //criação de eventos
+        //criação de eventos e locais
         ImobiliariaDeEventos imob = new ImobiliariaDeEventos("Imobiliaria freitas");
         Organizadora org = new Organizadora("Eventos e Afins", 123456789, "Rua da Paz 123");
 
@@ -95,118 +96,178 @@ public class App {
 
         System.out.println("quer comprar ingresso e comparar clientes ou filtrar eventos? (V/F)");
         String oper = s.nextLine();
-        int ind;
         Evento event;
-        String ticket;
+        String ticket, answ;
         switch (oper){
             case ("V"):
-                System.out.println("Qual cliente quer comprar? (1/2)");
-                int client = s.nextInt();
-                if (client != 1 && client != 2){
-                    System.err.println("Cliente inválido!");
-                    System.exit(1);
-                }
-                System.out.println("Qual evento? (escolha um número)");
-                org.showEventos();
-                ind = s.nextInt();
-                if (ind > org.getEventos().size() || ind <= 0){
-                    System.err.println("Evento Inválido!");
-                    System.exit(1);
-                }
-                event = org.getEventos().get(ind - 1);
-                System.out.println("Inteira, meia ou VIP? (I/M/V)");
-                ticket = s.nextLine();
-                switch (ticket) {
-                    case ("I"):
-                        try {
-                            event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoInteira(event, event.getPrecoIngresso(), true));
-                        } catch (IngressoEsgotadoException e) {
-                            System.err.println("Evento esgotado!");
-                            System.exit(1);
-                        }
-                        break;
-
-                    case ("M"):
-                        try {
-                            event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoMeia(event, event.getPrecoIngresso(), true));
-                        } catch (IngressoEsgotadoException e) {
-                            System.err.println("Evento esgotado!");
-                            System.exit(1);
-                        }
-                        break;
-
-                    case ("V"):
-                        try {
-                            event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoVip(event, event.getPrecoIngresso(), false));
-                        } catch (IngressoEsgotadoException e) {
-                            System.err.println("Evento esgotado!");
-                            System.exit(1);
-                        }
-                        break;
-
-                    default:
-                        System.out.println("Tipo de ingresso inválido! Tente novamente.");
-                }
-                System.out.println("Quer comprar mais ingressos? (s/n)");
-                String answ = s.nextLine();
-                if (answ.equals("n")){
-                    if (cliente_1.compareTo(cliente_2)){
-                        System.out.println("O cliente 1 tem os mesmos ingressos do cliente 2!");
-                    } else {
-                        System.out.println("O cliente 1 não tem os mesmos ingressos do cliente 2!");
+                while (true){
+                    System.out.println("Qual cliente quer comprar? (1/2)");
+                    int client = Integer.parseInt(s.nextLine());
+                    if (client != 1 && client != 2){
+                        System.err.println("Cliente inválido!");
+                        System.exit(1);
                     }
-                    break;
+                    System.out.println("Qual evento? (escolha um número)");
+                    org.showEventos();
+                    int ind = Integer.parseInt(s.nextLine());
+                    if (ind > org.getEventos().size() || ind <= 0){
+                        System.err.println("Evento Inválido!");
+                        System.exit(1);
+                    }
+                    event = org.getEventos().get(ind - 1);
+                    System.out.println("Inteira, meia ou VIP? (I/M/V)");
+                    ticket = s.nextLine();
+                    switch (ticket) {
+                        case ("I"):
+                            try {
+                                event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoInteira(event, event.getPrecoIngresso(), true));
+                            } catch (IngressoEsgotadoException e) {
+                                System.err.println(e.getMessage());
+                                System.exit(1);
+                            }
+                            break;
+    
+                        case ("M"):
+                            try {
+                                event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoMeia(event, event.getPrecoIngresso(), true));
+                            } catch (IngressoEsgotadoException e) {
+                                System.err.println(e.getMessage());
+                                System.exit(1);
+                            }
+                            break;
+    
+                        case ("V"):
+                            try {
+                                event.venderIngresso(client == 2 ? cliente_2 : cliente_1, new IngressoVip(event, event.getPrecoIngresso(), false));
+                            } catch (IngressoEsgotadoException e) {
+                                System.err.println(e.getMessage());
+                                System.exit(1);
+                            }
+                            break;
+    
+                        default:
+                            System.out.println("Tipo de ingresso inválido! Tente novamente.");
+                    }
+                    System.out.println("Quer comprar mais ingressos? (s/n)");
+                    answ = s.nextLine();
+                    if (answ.equals("n")){
+                        if (cliente_1.compareTo(cliente_2)){
+                            System.out.println("O cliente 1 tem os mesmos ingressos do cliente 2!");
+                        } else {
+                            System.out.println("O cliente 1 não tem os mesmos ingressos do cliente 2!");
+                        }
+                        break;
+                    }
                 }
+                cliente_1.showIngressos();
+                cliente_2.showIngressos();
+                break;
 
             case ("F"):
+                boolean and_filter = false;
+                System.out.println("Usar AndFilter? (s/n)");
+                answ = s.nextLine();
+                if (answ.equals("s")){
+                    and_filter = true;
+                }
+                ArrayList<Filter<?>> filters = new ArrayList<Filter<?>>();
                 Filter<?> filtro;
                 System.out.println("Que tipo de filtragem?");
                 String type = s.nextLine();
-                ArrayList<Evento> result;
-                switch (type) {
-                    case "Tipo":
+                ArrayList<Evento> result = new ArrayList<Evento>();
+                while (true) {
+                    switch (type) {
+                        case "Tipo":
+                            System.out.println("Qual tipo de evento?");
+                            String event_type = s.nextLine();
+                            switch (event_type) {
+                                case "Festival":
+                                    filtro = new EventoPorTipoFilter(EventoFestival.class);
+                                    filters.add(filtro);
+                                    result = org.buscarEventos(filtro);
+                                    break;
+                                case "Jogo":
+                                    filtro = new EventoPorTipoFilter(EventoJogo.class);
+                                    filters.add(filtro);
+                                    result = org.buscarEventos(filtro);
+                                    break;
+                                case "Musica":
+                                    filtro = new EventoPorTipoFilter(EventoMusicaAoVivo.class);
+                                    filters.add(filtro);
+                                    result = org.buscarEventos(filtro);
+                                    break;
+                                case "Show":
+                                    filtro = new EventoPorTipoFilter(EventoShow.class);
+                                    filters.add(filtro);
+                                    result = org.buscarEventos(filtro);
+                                    break;
+                                default:
+                                    System.err.println("Tipo de evento inválido!");
+                                    System.exit(1);
+                            }
+                            break;
+                        
+                        case "Org":
+                            filtro = new EventoPorOrganizadoraFilter(org);
+                            filters.add(filtro);
+                            result = org.buscarEventos(filtro);
+                            break;
+    
+                        case "Nome":
+                            System.out.println("Digite um nome:");
+                            String name = s.nextLine();
+                            filtro = new EventoPorNomeFilter(name);
+                            filters.add(filtro);
+                            result = org.buscarEventos(filtro);
+                            break;
+    
+                        case "Local":
+                            System.out.println("Escolha um local:");
+                            try{
+                                Local local = imob.buscaLocal(s.nextLine());
+                                filtro = new EventoPorLocalFilter(local);
+                                filters.add(filtro);
+                                result = org.buscarEventos(filtro);
+                                break;
+                            } catch (LocalNaoEncontradoException e){
+                                System.err.println(e.getMessage());
+                                System.exit(1);
+                            }
+                        
+    
+                        case "Data":
+                            System.out.println("Escolha uma data (DIA/MÊS/ANO)");
+                            String[] data = s.nextLine().split("/");
+                            int[] data_format = new int[data.length];
+                            for (int i = 0; i < data.length; i++){
+                                data_format[i] = Integer.parseInt(data[i]);
+                            }
+                            filtro = new EventoPorDataFilter(LocalDate.of(data_format[2], data_format[1], data_format[0]));
+                            filters.add(filtro);
+                            result = org.buscarEventos(filtro);
+                            break;
                     
-                        System.out.println("Qual tipo de evento?");
-                        String event_type = s.nextLine();
-                        switch (event_type) {
-                            case "Festival":
-                                filtro = new EventoPorTipoFilter(EventoFestival.class);
-                                result = org.buscarEventos(filtro);
-                                break;
-                            case "Jogo":
-                                filtro = new EventoPorTipoFilter(EventoJogo.class);
-                                result = org.buscarEventos(filtro);
-                                break;
-                            case "Musica":
-                                filtro = new EventoPorTipoFilter(EventoMusicaAoVivo.class);
-                                result = org.buscarEventos(filtro);
-                                break;
-                            case "Show":
-                                filtro = new EventoPorTipoFilter(EventoShow.class);
-                                result = org.buscarEventos(filtro);
-                                break;
-                            default:
-                                System.out.println("Tipo de evento inválido! Tente novamente");
-                        }
-                    
-                    case "Org":
+                        default:
+                            System.err.println("Filtro Inválido!");
+                            System.exit(1);
+                    }
+                    if (!and_filter || filters.size() == 2){
                         break;
-
-                    case "Nome":
-                        break;
-
-                    case "Local":
-                        break;
-
-                    case "Data":
-                        break;
-                
-                    default:
-                        break;
+                    }
                 }
+                if(and_filter){
+                    result = new AndFilter(filters.get(0), filters.get(1)).filter(org.getEventos());
+                }
+                System.out.println("Resultado:");
+                for (Evento e : result){
+                    e.descricao();
+                    System.out.println();
+                }
+                
             default:
-                System.out.println("Input inválido! Tente novamente");
-                oper = s.nextLine();
+                System.err.println("Input inválido! Tente novamente");
+                System.exit(1);
         }
+        s.close();
     }
 }

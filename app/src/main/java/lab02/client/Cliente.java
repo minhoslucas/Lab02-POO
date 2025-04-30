@@ -109,7 +109,21 @@ public class Cliente implements Comparable<Cliente>{
         }
     }
 
+    public void showIngressos(){
+        for (Ingresso ticket: this.ingressos){
+            System.out.println(ticket);
+        }
+    }
+
     public boolean compareTo(Cliente cliente){
-        return this.ingressos.equals(cliente.getIngressos());
+        if (this.ingressos.size() != cliente.getIngressos().size()){
+            return false;
+        }
+        for (int i = 0; i < this.ingressos.size(); i++) {
+            if (!this.ingressos.get(i).equals(cliente.getIngressos().get(i))){
+                return false;
+            }
+        }
+        return true;
     }
 }

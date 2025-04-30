@@ -67,10 +67,10 @@
      @Override
      public void descricao() {
          String text = "Nome do Show: " + this.getNome() + "\n" +
-                     "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
-                     "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
-                     "Data: " + this.getData() + "\n" +
-                     this.caracteristicas.descricao();
+        "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
+        "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
+        "Data: " + this.getData() + "\n" +
+        this.caracteristicas.descricao();
          System.out.println(text);
      }
  }

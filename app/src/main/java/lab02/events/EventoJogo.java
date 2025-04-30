@@ -65,9 +65,9 @@
       */
      @Override
      public void descricao() {
-         String text = "Nome do Jogo: " + this.getNome() + "\n" +
-                      "Local do Jogo: " + this.getLocal().getNome() + "\n" +
-                      this.caracteristicas.descricao();
-         System.out.println(text);
+        String text = "Nome do Jogo: " + this.getNome() + "\n" +
+        "Local do Jogo: " + this.getLocal().getNome() + "\n" +
+        this.caracteristicas.descricao();
+        System.out.println(text);
      }
  }
