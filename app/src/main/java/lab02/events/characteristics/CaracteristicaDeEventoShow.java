@@ -6,7 +6,7 @@ package lab02.events.characteristics;
  *
  * @author Lucas Beserra - 281815
  * 
- * Comentarios feitos por IA
+ * Comentários feitos por IA
  */
 public class CaracteristicaDeEventoShow extends CaracteristicaDeEvento {
 
@@ -15,6 +15,7 @@ public class CaracteristicaDeEventoShow extends CaracteristicaDeEvento {
 
     /**
      * Constrói uma característica de show com o artista especificado.
+     * 
      * @param artista Nome do artista principal
      */
     public CaracteristicaDeEventoShow(String artista) {
@@ -23,6 +24,7 @@ public class CaracteristicaDeEventoShow extends CaracteristicaDeEvento {
     
     /**
      * Obtém o nome do artista do show.
+     * 
      * @return Nome do artista
      */
     public String getArtista() {
@@ -31,6 +33,7 @@ public class CaracteristicaDeEventoShow extends CaracteristicaDeEvento {
 
     /**
      * Retorna a descrição completa das características do show.
+     * 
      * @return Descrição contendo o nome do artista
      */
     public String descricao() {

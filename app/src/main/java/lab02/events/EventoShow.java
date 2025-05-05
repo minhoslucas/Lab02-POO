@@ -11,9 +11,8 @@
   * Classe que representa um evento do tipo Show.
   * Contém características específicas de shows artísticos.
   * 
-  * @author Lucas Beserra - 281815
-  *
-  * Comentarios feitos por IA
+  * @author Lucas Beserra - 281815  
+  * Comentários feitos por IA e revisados posteriormente
   */
  public class EventoShow extends Evento {
      
@@ -21,34 +20,37 @@
      private CaracteristicaDeEventoShow caracteristicas;    
      
      /**
-      * Construtor da classe EventoShow
+      * Construtor da classe EventoShow.
+      * 
       * @param nome Nome do show
       * @param local Local da apresentação
       * @param precoIngresso Preço do ingresso
       * @param caracteristicas Características do show
-      * @param capacidade Capacidade máxima
-      * @param organizadora Organizadora responsável
+      * @param capacidade Capacidade máxima do local
+      * @param organizadora Organizadora responsável pelo evento
       * @param data Data do show
       */
      public EventoShow(String nome, Local local, double precoIngresso, 
-                      CaracteristicaDeEventoShow caracteristicas, int capacidade, 
-                      Organizadora organizadora, LocalDate data) {
+                       CaracteristicaDeEventoShow caracteristicas, int capacidade, 
+                       Organizadora organizadora, LocalDate data) {
          super(precoIngresso, nome, local, capacidade, data, organizadora);
          this.caracteristicas = caracteristicas;
      }
  
      /**
-      * Obtém as características do show
-      * @return Características do show
+      * Obtém as características do show.
+      * 
+      * @return as características do show
       */
      public CaracteristicaDeEventoShow getCaracteristicas() {
          return this.caracteristicas;
      }
  
      /**
-      * Define as características do show
-      * @param caracteristicas Novas características do show
-      * @throws IllegalArgumentException Se as características forem nulas
+      * Define as características do show.
+      * 
+      * @param caracteristicas novas características do show
+      * @throws IllegalArgumentException se as características forem nulas
       */
      public void setCaracteristicas(CaracteristicaDeEventoShow caracteristicas) {
          try {
@@ -62,15 +64,16 @@
      }
  
      /**
-      * Exibe a descrição completa do show
+      * Exibe a descrição completa do show no console.
       */
      @Override
      public void descricao() {
          String text = "Nome do Show: " + this.getNome() + "\n" +
-        "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
-        "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
-        "Data: " + this.getData() + "\n" +
-        this.caracteristicas.descricao();
+                       "Nome do Artista: " + this.caracteristicas.getArtista() + "\n" +
+                       "Local da Apresentação: " + this.getLocal().getNome() + "\n" +
+                       "Data: " + this.getData() + "\n" +
+                       this.caracteristicas.descricao();
          System.out.println(text);
      }
  }
+ 

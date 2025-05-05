@@ -60,15 +60,20 @@ public class Cliente implements Comparable<Cliente>{
     public void setEmail(Email email){
         this.email = email;
     }
+    
     /**
      * Retorna a lista de ingressos do cliente
      * @return a lista de ingressos do cliente
      */
-
     public ArrayList<Ingresso> getIngressos() {
         return ingressos;
     }
 
+    /**
+     * Retorna o número de ingressos do cliente
+     * @return quantidade de ingressos
+     * @throws ClienteSemIngressosException se o cliente não tiver ingressos
+     */
     public int getNumIngressos() throws ClienteSemIngressosException{
         if (this.ingressos.size() == 0){
             throw new ClienteSemIngressosException("Cliente de e-mail " + this.email.getEmailText() + " sem ingressos!");
@@ -85,14 +90,31 @@ public class Cliente implements Comparable<Cliente>{
         this.ingressos.add(ingresso);
     }
 
+    /**
+     * Adiciona múltiplos ingressos à lista de ingressos do cliente.
+     * 
+     * @param ingressos lista de ingressos a ser adicionada
+     */
     public void adicionarIngresso(ArrayList<Ingresso> ingressos) {
         this.ingressos = ingressos;
     }
 
+    /**
+     * Método privado para remover um ingresso da lista de ingressos do cliente
+     * 
+     * @param ingresso o ingresso a ser removido
+     */
     private void removerIngresso(Ingresso ingresso) {
         this.ingressos.remove(ingresso);
     }
 
+    /**
+     * Cancela um ingresso do cliente. Lança exceções caso o ingresso não seja cancelável ou não seja encontrado.
+     * 
+     * @param ingresso o ingresso a ser cancelado
+     * @throws CancelamentoNaoPermitidoException se o ingresso não puder ser cancelado
+     * @throws IngressoNaoEncontradoException se o ingresso não for encontrado
+     */
     public void cancelarIngresso(Ingresso ingresso) throws CancelamentoNaoPermitidoException, IngressoNaoEncontradoException {
         boolean found = false;
         if (!ingresso.isCancelable()){
@@ -113,6 +135,9 @@ public class Cliente implements Comparable<Cliente>{
         System.out.println("Ingresso cancelado com sucesso");
     }
 
+    /**
+     * Exibe os ingressos do cliente.
+     */
     public void showIngressos(){
         try {
             this.getNumIngressos();
@@ -126,12 +151,24 @@ public class Cliente implements Comparable<Cliente>{
         }
     }
 
+    /**
+     * Método privado para comparar dois ingressos.
+     * 
+     * @param ingresso1 primeiro ingresso
+     * @param ingresso2 segundo ingresso
+     * @return true se os ingressos forem iguais, false caso contrário
+     */
     private boolean compareTickets(Ingresso ingresso1, Ingresso ingresso2){
-        boolean evento;
-        evento = ingresso1.getEvento().equals(ingresso2.getEvento());
-        return evento;
+        return ingresso1.getEvento().equals(ingresso2.getEvento());
     }
 
+    /**
+     * Método de comparação entre dois clientes baseado nos ingressos adquiridos.
+     * 
+     * @param cliente o cliente a ser comparado
+     * @return true se os clientes tiverem a mesma quantidade e os mesmos ingressos, false caso contrário
+     */
+    @Override
     public boolean compareTo(Cliente cliente){
         if (this.ingressos.size() != cliente.getIngressos().size()){
             return false;

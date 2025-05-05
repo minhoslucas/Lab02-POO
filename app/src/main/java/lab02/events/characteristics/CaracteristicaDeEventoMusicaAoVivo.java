@@ -28,6 +28,7 @@ public class CaracteristicaDeEventoMusicaAoVivo extends CaracteristicaDeEvento{
     }
     
     /**
+     * Obtém a lista de músicas do setlist
      * @return Lista de músicas do setlist
      */
     public ArrayList<String> getSetlist(){
@@ -41,9 +42,9 @@ public class CaracteristicaDeEventoMusicaAoVivo extends CaracteristicaDeEvento{
     public void setSetlist(ArrayList<String> setlist){
         try {
             if (setlist == null || setlist.isEmpty()) {
-            throw new IllegalArgumentException("Setlist não pode ser null ou vazia");
-        }
-        this.setlist = setlist;
+                throw new IllegalArgumentException("Setlist não pode ser null ou vazia");
+            }
+            this.setlist = setlist;
         } catch (IllegalArgumentException e){
             System.err.println(e.getMessage());
         }
@@ -58,7 +59,8 @@ public class CaracteristicaDeEventoMusicaAoVivo extends CaracteristicaDeEvento{
     }
 
     /**
-     * @return Duração do evento
+     * Obtém a duração do evento
+     * @return Duração do evento em minutos
      */
     public int getDuracao(){
         return this.duracao;
@@ -79,7 +81,8 @@ public class CaracteristicaDeEventoMusicaAoVivo extends CaracteristicaDeEvento{
     }
 
     /**
-     * @return Descrição completa do evento
+     * Retorna uma descrição completa do evento
+     * @return Descrição completa do evento com setlist e duração
      */
     public String descricao(){
         return "Setlist: " + "\n" + this.showSetlist() +

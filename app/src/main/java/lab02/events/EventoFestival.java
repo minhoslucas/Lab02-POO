@@ -12,7 +12,8 @@
   * Classe que representa um evento do tipo Festival.
   * Contém características específicas de festivais.
   * 
-  * @author Lucas Beserra - 281815
+  * @author Lucas Beserra - 281815  
+  * Comentários feitos por IA e revisados posteriormente
   */
  public class EventoFestival extends Evento {
  
@@ -20,31 +21,36 @@
      private CaracteristicaDeEventoFestival caracteristicas;
      
      /**
-      * Construtor da classe EventoFestival
+      * Construtor da classe EventoFestival.
+      * 
       * @param caracteristicas Características do festival
       * @param precoIngresso Preço do ingresso
       * @param nome Nome do festival
-      * @param local Local do festival
-      * @param capacidade Capacidade máxima
-      * @param organizadora Organizadora responsável
+      * @param local Local onde ocorrerá o festival
+      * @param capacidade Capacidade máxima do local
+      * @param organizadora Organizadora responsável pelo evento
       * @param data Data do festival
       */
-     public EventoFestival(CaracteristicaDeEventoFestival caracteristicas, double precoIngresso, String nome, Local local, int capacidade, Organizadora organizadora, LocalDate data) {
+     public EventoFestival(CaracteristicaDeEventoFestival caracteristicas, double precoIngresso, String nome,
+                           Local local, int capacidade, Organizadora organizadora, LocalDate data) {
          super(precoIngresso, nome, local, capacidade, data, organizadora);
          this.caracteristicas = caracteristicas;
      }
  
      /**
-      * Obtém as características do festival
-      * @return Características do festival
+      * Obtém as características do festival.
+      * 
+      * @return características do festival
       */
      public CaracteristicaDeEventoFestival getCaracteristicas() {
          return this.caracteristicas;
      }
  
      /**
-      * Define as características do festival
-      * @param caracteristicas Novas características
+      * Define as características do festival.
+      * 
+      * @param caracteristicas novas características do festival
+      * @throws IllegalArgumentException se as características forem nulas
       */
      public void setCaracteristicas(CaracteristicaDeEventoFestival caracteristicas) {
          try {
@@ -58,14 +64,15 @@
      }
  
      /**
-      * Exibe a descrição completa do festival
+      * Exibe a descrição completa do festival no console.
       */
      @Override
-     public void descricao(){
+     public void descricao() {
          String text = "Nome do Festival: " + this.getNome() + "\n" +
-         "Local do Festival: " + this.getLocal().getNome() + "\n" +
-         "Data: " + this.getData() + "\n" +
-         this.caracteristicas.descricao();
+                       "Local do Festival: " + this.getLocal().getNome() + "\n" +
+                       "Data: " + this.getData() + "\n" +
+                       this.caracteristicas.descricao();
          System.out.println(text);
      }
  }
+ 

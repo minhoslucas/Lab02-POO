@@ -8,44 +8,45 @@
  import java.util.ArrayList;
  
  import lab02.client.Cliente;
-import lab02.events.characteristics.CaracteristicaDeEvento;
-import lab02.exceptions.IngressoEsgotadoException;
-import lab02.exceptions.LocalNaoEncontradoException;
+ import lab02.events.characteristics.CaracteristicaDeEvento;
+ import lab02.exceptions.IngressoEsgotadoException;
+ import lab02.exceptions.LocalNaoEncontradoException;
  import lab02.tickets.Ingresso;
  
  /**
   * Classe abstrata que representa um evento genérico.
-  * Contém informações básicas como nome, local, data e capacidade.
+  * Contém informações básicas como nome, local, data, capacidade e preço do ingresso.
   * 
   * @author Lucas Beserra - 281815
-  *
-  * Comentarios feitos por IA
+  * 
+  * Comentários feitos por IA e revisados posteriormente
   */
  public abstract class Evento {
  
      /** Nome do evento */
      private String nome;
-     
+ 
      /** Local onde o evento será realizado */
      private Local local;
-     
+ 
      /** Data do evento */
      private LocalDate data;
-     
+ 
      /** Organizadora responsável pelo evento */
      private Organizadora organizadora;
-     
+ 
      /** Capacidade máxima do evento */
      private int capacidade;
-     
+ 
      /** Preço base do ingresso */
      private double precoIngresso;
-     
+ 
      /** Lista de ingressos vendidos */
      private ArrayList<Ingresso> listaIngressos;
  
      /**
       * Construtor da classe Evento
+      * 
       * @param precoIngresso Preço base do ingresso
       * @param nome Nome do evento
       * @param local Local do evento
@@ -65,6 +66,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Verifica se o evento está lotado
+      * 
       * @return true se o evento estiver lotado, false caso contrário
       */
      private boolean isFull() {
@@ -73,6 +75,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna o preço do ingresso
+      * 
       * @return Preço do ingresso
       */
      public double getPrecoIngresso() {
@@ -81,6 +84,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna o nome do evento
+      * 
       * @return Nome do evento
       */
      public String getNome() {
@@ -89,6 +93,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna o local do evento
+      * 
       * @return Local do evento
       */
      public Local getLocal() {
@@ -97,6 +102,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Define o local do evento
+      * 
       * @param local Novo local do evento
       */
      public void setLocal(Local local) {
@@ -105,6 +111,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna a capacidade do evento
+      * 
       * @return Capacidade do evento
       */
      public int getCapacidade() {
@@ -113,6 +120,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna a data do evento
+      * 
       * @return Data do evento
       */
      public LocalDate getData() {
@@ -121,6 +129,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Retorna a organizadora do evento
+      * 
       * @return Organizadora do evento
       */
      public Organizadora getOrganizadora() {
@@ -129,21 +138,28 @@ import lab02.exceptions.LocalNaoEncontradoException;
  
      /**
       * Define o preço do ingresso
+      * 
       * @param precoIngresso Novo preço do ingresso
       */
      public void setPrecoIngresso(double precoIngresso) {
          this.precoIngresso = precoIngresso;
      }
-
+ 
+     /**
+      * Método abstrato para obter as características do evento
+      * 
+      * @return Características do evento
+      */
      public abstract CaracteristicaDeEvento getCaracteristicas();
  
      /**
       * Realiza a venda de um ingresso para um cliente
+      * 
       * @param cliente Cliente que está comprando o ingresso
       * @param ingresso Ingresso a ser vendido
-      * @throws LocalNaoEncontradoException Se o evento estiver lotado
+      * @throws IngressoEsgotadoException Se o evento estiver lotado
       */
-     public void venderIngresso(Cliente cliente, Ingresso ingresso) throws IngressoEsgotadoException{
+     public void venderIngresso(Cliente cliente, Ingresso ingresso) throws IngressoEsgotadoException {
          if (ingresso.getEvento().isFull()) {
              throw new IngressoEsgotadoException("EVENTO LOTADO");
          }
@@ -152,9 +168,14 @@ import lab02.exceptions.LocalNaoEncontradoException;
          this.listaIngressos.add(ingresso);
          System.out.println("Ingresso Vendido com Sucesso!");
      }
-
-     public void cancelarIngresso(Ingresso ingresso){
-        this.listaIngressos.remove(ingresso);
+ 
+     /**
+      * Cancela um ingresso vendido
+      * 
+      * @param ingresso Ingresso a ser cancelado
+      */
+     public void cancelarIngresso(Ingresso ingresso) {
+         this.listaIngressos.remove(ingresso);
      }
  
      /**
@@ -164,3 +185,4 @@ import lab02.exceptions.LocalNaoEncontradoException;
          System.out.println("Evento: " + this.nome + " - Local: " + this.local);
      }
  }
+ 
