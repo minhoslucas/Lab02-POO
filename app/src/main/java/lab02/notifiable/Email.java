@@ -28,5 +28,6 @@ public class Email implements Notifiable{
         for (String message : message_list) {
             System.out.println("E-mail: " + message);
         }
+        message_list.clear();
     }
 }

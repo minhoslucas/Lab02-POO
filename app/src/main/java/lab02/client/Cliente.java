@@ -108,6 +108,7 @@ public class Cliente implements Comparable<Cliente>{
             throw new IngressoNaoEncontradoException("Ingresso não encontrado");
         }
         this.removerIngresso(ingresso);
+        ingresso.getEvento().cancelarIngresso(ingresso);
         this.email.addNotification("Novo ingresso cancelado: " + ingresso.getEvento().getNome());
         System.out.println("Ingresso cancelado com sucesso");
     }

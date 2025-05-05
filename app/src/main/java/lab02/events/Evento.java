@@ -8,6 +8,7 @@
  import java.util.ArrayList;
  
  import lab02.client.Cliente;
+import lab02.events.characteristics.CaracteristicaDeEvento;
 import lab02.exceptions.IngressoEsgotadoException;
 import lab02.exceptions.LocalNaoEncontradoException;
  import lab02.tickets.Ingresso;
@@ -67,7 +68,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
       * @return true se o evento estiver lotado, false caso contrário
       */
      private boolean isFull() {
-         return this.listaIngressos.size() + 1 > this.local.getCapacidade();
+         return this.listaIngressos.size() == this.local.getCapacidade();
      }
  
      /**
@@ -133,6 +134,8 @@ import lab02.exceptions.LocalNaoEncontradoException;
      public void setPrecoIngresso(double precoIngresso) {
          this.precoIngresso = precoIngresso;
      }
+
+     public abstract CaracteristicaDeEvento getCaracteristicas();
  
      /**
       * Realiza a venda de um ingresso para um cliente
@@ -146,7 +149,12 @@ import lab02.exceptions.LocalNaoEncontradoException;
          }
          cliente.adicionarIngresso(ingresso);
          cliente.getEmail().addNotification("Novo evento comprado: " + this.nome);
+         this.listaIngressos.add(ingresso);
          System.out.println("Ingresso Vendido com Sucesso!");
+     }
+
+     public void cancelarIngresso(Ingresso ingresso){
+        this.listaIngressos.remove(ingresso);
      }
  
      /**
