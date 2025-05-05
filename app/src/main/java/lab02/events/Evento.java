@@ -145,6 +145,7 @@ import lab02.exceptions.LocalNaoEncontradoException;
              throw new IngressoEsgotadoException("EVENTO LOTADO");
          }
          cliente.adicionarIngresso(ingresso);
+         cliente.getEmail().addNotification("Novo evento comprado: " + this.nome);
          System.out.println("Ingresso Vendido com Sucesso!");
      }
  

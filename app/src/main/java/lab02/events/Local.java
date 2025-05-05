@@ -75,22 +75,16 @@ public class Local{
         }
     }
 
-    public void alocarParaEvento(Evento evento) {
-        try{
-            if (this.capacidadeMaxima < evento.getCapacidade()){
-                throw new CapacidadeInsuficienteException("local com capacidade insuficiênte");
-            }
-            for (Evento test : evento.getOrganizadora().getEventos()){
-                if (test.getLocal().equals(this)){
-                    throw new LocalIndisponivelException("Local indisponível para o evento");
-                }
-            }
-            
-            evento.setLocal(this);
-        } catch (CapacidadeInsuficienteException e){
-            System.out.println(e.getMessage());
-        } catch (LocalIndisponivelException e){
-            System.out.println(e.getMessage());
+    public void alocarParaEvento(Evento evento) throws CapacidadeInsuficienteException, LocalIndisponivelException {
+        
+        if (this.capacidadeMaxima < evento.getCapacidade()){
+            throw new CapacidadeInsuficienteException("local com capacidade insuficiênte");
         }
+        for (Evento test : evento.getOrganizadora().getEventos()){
+            if (test.getLocal().equals(this)){
+                throw new LocalIndisponivelException("Local indisponível para o evento");
+            }
+        }
+        evento.setLocal(this);
     }
 }

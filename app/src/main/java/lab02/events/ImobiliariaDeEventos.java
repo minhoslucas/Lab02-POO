@@ -79,4 +79,12 @@ public class ImobiliariaDeEventos {
         return locais;
     }
 
+    public void showLocais(){
+        int i = 0;
+        for (Local local : this.locais){
+            System.out.println(i + "> " + local.getNome() + "Capacidade: " + local.getCapacidade());
+            i++;
+        }
+    }
+
 }

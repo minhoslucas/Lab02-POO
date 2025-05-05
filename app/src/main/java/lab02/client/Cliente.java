@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import lab02.exceptions.CancelamentoNaoPermitidoException;
 import lab02.exceptions.IngressoNaoEncontradoException;
+import lab02.exceptions.ClienteSemIngressosException;
 import lab02.notifiable.Email;
 import lab02.tickets.Ingresso;
 
@@ -68,6 +69,13 @@ public class Cliente implements Comparable<Cliente>{
         return ingressos;
     }
 
+    public int getNumIngressos() throws ClienteSemIngressosException{
+        if (this.ingressos.size() == 0){
+            throw new ClienteSemIngressosException("Cliente de e-mail " + this.email.getEmailText() + " sem ingressos!");
+        }
+        return this.ingressos.size();
+    }
+
     /**
      * Adiciona um ingresso à lista de ingressos do cliente.
      * 
@@ -85,34 +93,42 @@ public class Cliente implements Comparable<Cliente>{
         this.ingressos.remove(ingresso);
     }
 
-    public void cancelarIngresso(Ingresso ingresso) {
-        try{
-            boolean found = false;
-            if (!ingresso.isCancelable()){
-                throw new CancelamentoNaoPermitidoException("O ingresso não pode ser cancelado");
-            }
-            for (Ingresso test : ingressos){
-                if (test.equals(ingresso)){
-                    found = true;
-                    break;
-                }
-            }
-            if (!found){
-                throw new IngressoNaoEncontradoException("Ingresso não encontrado");
-            }
-            this.removerIngresso(ingresso);
-            System.out.println("Ingresso cancelado com sucesso");
-        } catch (CancelamentoNaoPermitidoException e){
-            System.out.println(e.getMessage());
-        } catch (IngressoNaoEncontradoException e){
-            System.out.println(e.getMessage());
+    public void cancelarIngresso(Ingresso ingresso) throws CancelamentoNaoPermitidoException, IngressoNaoEncontradoException {
+        boolean found = false;
+        if (!ingresso.isCancelable()){
+            throw new CancelamentoNaoPermitidoException("O ingresso não pode ser cancelado");
         }
+        for (Ingresso test : ingressos){
+            if (test.equals(ingresso)){
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            throw new IngressoNaoEncontradoException("Ingresso não encontrado");
+        }
+        this.removerIngresso(ingresso);
+        this.email.addNotification("Novo ingresso cancelado: " + ingresso.getEvento().getNome());
+        System.out.println("Ingresso cancelado com sucesso");
     }
 
     public void showIngressos(){
-        for (Ingresso ticket: this.ingressos){
-            System.out.println(ticket);
+        try {
+            this.getNumIngressos();
+        } catch (ClienteSemIngressosException e){
+            System.out.println("Cliente sem Ingressos!");
         }
+        int i = 1;
+        for (Ingresso ticket: this.ingressos){
+            System.out.println(i + "> " + ticket);
+            i++;
+        }
+    }
+
+    private boolean compareTickets(Ingresso ingresso1, Ingresso ingresso2){
+        boolean evento;
+        evento = ingresso1.getEvento().equals(ingresso2.getEvento());
+        return evento;
     }
 
     public boolean compareTo(Cliente cliente){
@@ -120,7 +136,7 @@ public class Cliente implements Comparable<Cliente>{
             return false;
         }
         for (int i = 0; i < this.ingressos.size(); i++) {
-            if (!this.ingressos.get(i).equals(cliente.getIngressos().get(i))){
+            if (!this.compareTickets(cliente.getIngressos().get(i), this.ingressos.get(i))){
                 return false;
             }
         }
