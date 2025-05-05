@@ -10,7 +10,6 @@
  import lab02.client.Cliente;
  import lab02.events.characteristics.CaracteristicaDeEvento;
  import lab02.exceptions.IngressoEsgotadoException;
- import lab02.exceptions.LocalNaoEncontradoException;
  import lab02.tickets.Ingresso;
  
  /**
