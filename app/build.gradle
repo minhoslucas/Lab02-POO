@@ -38,6 +38,11 @@ application {
     mainClass = 'lab02.App'
 }
 
+// Garante que o input do terminal seja passado para o programa
+run {
+    standardInput = System.in
+}
+
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()

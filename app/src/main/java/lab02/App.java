@@ -33,6 +33,7 @@ public class App {
     public static void main(String[] args) {
 
         Scanner s = new Scanner(System.in);  // Criação de scanner para entrada do usuário.
+        System.out.println("System.in disponível? " + (System.in != null));
 
         // Criação de dois clientes.
         Cliente cliente_1 = new Cliente("Cliente 1", new Email("cliente_1@gmail.com"));
